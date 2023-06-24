@@ -40,10 +40,10 @@ def mostrar_lista_votantes(lista_votantes):
         print("--------------------")
 
 # Se genera la lista de votantes
-lista_votantes = generar_lista_votantes(5)
+lista_votantes = generar_lista_votantes(11)
 
 # Se crea una instancia de la tabla hash de votantes
-tabla_votantes = TablaHashVotantes()
+tabla_votantes = TablaHashVotantes(len(lista_votantes))
 
 # Se llena la tabla hash con los votantes generados
 tabla_votantes.llenar_tabla(lista_votantes)
