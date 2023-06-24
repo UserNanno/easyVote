@@ -9,18 +9,18 @@ class EasyVoteApp:
         self.votos_manager = VotosManager()
 
     def run(self):
-        votante = self.iniciar_sesion()
+        username = input("Ingrese su nombre de usuario: ")
+        password = input("Ingrese su contraseña: ")
+        votante = self.iniciar_sesion(username, password)
         if votante is not None:
             self.votar(votante)
 
-    def iniciar_sesion(self):
-        username = input("Ingrese su nombre de usuario: ")
-        password = input("Ingrese su contraseña: ")
+    def iniciar_sesion(self, username, password):
+        votante = self.votantes_manager.buscar_por_username(username)
+        if votante is not None and votante.password == password:
+            return votante
+        return None
 
-        votante = self.votantes_manager.iniciar_sesion(username, password)
-        if votante is None:
-            print("Nombre de usuario o contraseña incorrectos.")
-        return votante
 
     def votar(self, votante):
         if self.votos_manager.verificar_voto(votante):
