@@ -1,6 +1,8 @@
 import random
 #Estructura TablaHash utilizada para realizar la Búsqueda por Transformación Hash
 class TablaHashVotantes:
+    # Crea una lista de 10 elementos, donde cada elemento es una lista vacía. 
+    # Esto se conoce como una lista de listas o una lista anidada.
     def __init__(self):
         self.tabla_hash = [[] for _ in range(10)]
 
