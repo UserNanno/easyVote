@@ -9,16 +9,18 @@ class EasyVoteApp:
         self.votos_manager = VotosManager()
 
     def run(self):
-        username = input("Ingrese su nombre de usuario: ")
+        dni = input("Ingrese su DNI: ")
         password = input("Ingrese su contraseña: ")
-        votante = self.iniciar_sesion(username, password)
+        votante = self.iniciar_sesion(dni, password)
         if votante is not None:
             self.votar(votante)
 
-    def iniciar_sesion(self, username, password):
-        votante = self.votantes_manager.buscar_por_username(username)
+    def iniciar_sesion(self, dni, password):
+        votante = self.votantes_manager.buscar_por_dni(dni)
         if votante is not None and votante.password == password:
             return votante
+        else:
+            print("Credenciales inválidas.")
         return None
 
 
