@@ -17,7 +17,7 @@ class VotantesManager:
         return None
 
     def buscar_por_dni(self, dni):
-        query = "SELECT * FROM Votantes USE INDEX (idx_dni) WHERE dni = %s"
+        query = "SELECT * FROM Votantes USE INDEX (dni) WHERE dni = %s"
         result = self.db_manager.execute_query(query, (dni,))
         
         if result:
