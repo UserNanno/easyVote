@@ -5,7 +5,7 @@ class DatabaseManager:
         self.db = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="",
+            password="root",
             database="easyVote"
         )
         self.cursor = self.db.cursor()
