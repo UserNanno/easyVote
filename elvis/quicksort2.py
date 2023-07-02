@@ -1,7 +1,9 @@
 nombres=["Candidato A","Candidato B","Candidato C","Candidato D",
-            "Candidato E","Candidato F","Candidato G","Candidato H"]
+            "Candidato E","Candidato F","Candidato G","Candidato H",
+            
+            ]
 
-votos=[3215,6518,8495,6284,8495,9184,6284,9514]
+votos=[3215,6518,8495,6284,8495,9184,152,9514]
 
 
 def quicksort_votos_candidatos(nombres, votos):
