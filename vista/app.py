@@ -1,7 +1,7 @@
 import tkinter as tk
-import subprocess
-from login import Login
 
+from login import Login
+from estadistica import Estadistica
 
 
 class App:
@@ -35,7 +35,7 @@ class App:
         
 
     def boton2_click(self):
-        print("Botón 2 fue clickeado")
+        estadistica =Estadistica()
 
     # Ejecutar el bucle principal de la aplicación
     def iniciar(self):

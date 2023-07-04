@@ -1,5 +1,6 @@
-from easyvote_app import EasyVoteApp
+import sys
+sys.path.append("./vista") 
+from app import App
 
-if __name__ == "__main__":
-    app = EasyVoteApp()
-    app.run()
+ventana_app = App()
+ventana_app.iniciar()

@@ -1,6 +1,6 @@
 import tkinter as tk
 import mysql.connector
-from votar import Votar
+from vista.votar import Votar
 
 
 class Login:
