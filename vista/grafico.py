@@ -4,9 +4,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
 class Grafico:
-    def __init__(self, candidatos, votos):
-        self.candidatos = candidatos
-        self.votos = votos
+    def __init__(self):
+        
+        self.candidatos = ['A','B','C','D','E','F','G','H','I','J']
+        self.votos = [150, 200, 300, 250, 180, 220, 280, 190, 210, 240]# DATOS DE PRUEBA, SE DEBE REEMPLAZAR
 
     def crear_grafico(self):
         # Crear ventana

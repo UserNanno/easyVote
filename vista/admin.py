@@ -1,5 +1,7 @@
 import tkinter as tk
 from grafico import Grafico
+from grafico_genero import GraficoGenero
+from grafico_region import GraficoRegion
 from login import Login
 
 
@@ -24,7 +26,7 @@ class Admin:
         # Crear los botones dentro del contenedor
         self.boton1 = tk.Button(self.contenedor, text="Estadística\nGeneral", width=20, height=10, command=self.boton1_click)
         self.boton2 = tk.Button(self.contenedor, text="Estadística por\nRegión", width=20, height=10, command=self.boton2_click)
-        self.boton3 = tk.Button(self.contenedor, text="Estadística por\nGénero", width=20, height=10, command=self.boton2_click)
+        self.boton3 = tk.Button(self.contenedor, text="Estadística por\nGénero", width=20, height=10, command=self.boton3_click)
         
         # Ubicar los botones dentro del contenedor
         self.boton1.pack(side="left", padx=10)
@@ -33,22 +35,17 @@ class Admin:
 
     # Funciones para los botones
     def boton1_click(self):
-        candidatos = ['A','B','C','D','E','F','G','H','I','J']
-        votos = [150, 200, 300, 250, 180, 220, 280, 190, 210, 240]# DATOS DE PRUEBA, SE DEBE REEMPLAZAR
-        grafico=Grafico(candidatos,votos)
+        
+        grafico=Grafico()
         grafico.crear_grafico()
 
     def boton2_click(self):
-        candidatos = ['A','B','C','D','E','F','G','H','I','J']
-        votos = [150, 200, 300, 250, 180, 220, 280, 190, 210, 240]# DATOS DE PRUEBA, SE DEBE REEMPLAZAR
-        grafico=Grafico(candidatos,votos)
-        grafico.crear_grafico()
+        grafico2=GraficoRegion()
+        grafico2.crear_grafico()
         
     def boton3_click(self):
-        candidatos = ['A','B','C','D','E','F','G','H','I','J']
-        votos = [150, 200, 300, 250, 180, 220, 280, 190, 210, 240]# DATOS DE PRUEBA, SE DEBE REEMPLAZAR
-        grafico=Grafico(candidatos,votos)
-        grafico.crear_grafico()
+        grafico3=GraficoGenero()
+        grafico3.crear_grafico()
 
     # Ejecutar el bucle principal de la aplicación
     def iniciar(self):
