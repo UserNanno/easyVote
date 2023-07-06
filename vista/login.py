@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import mysql.connector
 from vista.votar import Votar
 
@@ -14,14 +15,14 @@ class Login:
 
         # Etiqueta y campo de entrada para el DNI
         self.label_dni = tk.Label(self.login, text="DNI:")
-        self.label_dni.pack()
+        self.label_dni.pack(pady=10)
 
         self.entry_dni = tk.Entry(self.login)
-        self.entry_dni.pack()
+        self.entry_dni.pack(pady=10)
 
         # Botón de inicio de sesión
         self.boton_iniciar = tk.Button(self.login, text="Iniciar sesión", command=self.iniciar_sesion)
-        self.boton_iniciar.pack()
+        self.boton_iniciar.pack(pady=10)
 
     # Función para validar el inicio de sesión
     def iniciar_sesion(self):
@@ -44,15 +45,18 @@ class Login:
         resultado = cursor.fetchone()
 
         if resultado:
-            print("Inicio de sesión exitoso")
+            messagebox.showinfo("Bienvenido","Inicio de sesión exitoso")
+            
             self.login.destroy()
-            votar=Votar()
+            votar=Votar(dni)
             
         else:
-            print("DNI no válido")
+            messagebox.showinfo("Alerta", "El DNI no es válido")
 
         # Cerrar el cursor y la conexión
         cursor.close()
         conexion.close()
 
-
+    # Ejecutar el bucle principal de la aplicación
+    def iniciar(self):
+        self.login.mainloop()

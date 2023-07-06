@@ -1,10 +1,14 @@
 import tkinter as tk
+from tkinter import messagebox
+import mysql.connector
 
 class Votar:
-    def __init__(self):
+    def __init__(self,dni):
+        
         # Crear la ventana
+        
         self.ventana = tk.Tk()
-
+        
         # Agregar contenido a la ventana
         etiqueta = tk.Label(self.ventana, text="ELIGE UN CANDIDATO")
         etiqueta.pack(pady=10)
@@ -14,35 +18,40 @@ class Votar:
         self.ventana.geometry("400x600")  # Tamaño de la ventana en píxeles
 
         # Funciones para los botones
+        nuevo_voto =""
         def boton1_click():
-            print("Botón 1 fue clickeado")
-
+            nuevo_voto = "candidato 1"
+            cursor.execute(consulta, (nuevo_voto, dni))
+            conexion.commit()
+            cursor.close()
+            conexion.close()
+            
         def boton2_click():
-            print("Botón 2 fue clickeado")
-
+            nuevo_voto = "candidato 2"
+            cursor.execute(consulta, (nuevo_voto, dni))
         def boton3_click():
-            print("Botón 3 fue clickeado")
+            nuevo_voto = "candidato 3"
 
         def boton4_click():
-            print("Botón 4 fue clickeado")
+            nuevo_voto = "candidato 4"
 
         def boton5_click():
-            print("Botón 5 fue clickeado")
+            nuevo_voto = "candidato 5"
 
         def boton6_click():
-            print("Botón 6 fue clickeado")
+            nuevo_voto = "candidato 6"
 
         def boton7_click():
-            print("Botón 7 fue clickeado")
+            nuevo_voto = "candidato 7"
 
         def boton8_click():
-            print("Botón 8 fue clickeado")
+            nuevo_voto = "candidato 8"
             
         def boton9_click():
-            print("Botón 9 fue clickeado")
+            nuevo_voto = "candidato 9"
 
         def boton10_click():
-            print("Botón 10 fue clickeado")
+            nuevo_voto = "candidato 10"
 
         # Crear un contenedor para los botones
         contenedor = tk.Frame(self.ventana)
@@ -97,6 +106,25 @@ class Votar:
         boton8.grid(row=2, column=4, pady=10)
         boton9.grid(row=3, column=4, pady=10)
         boton10.grid(row=4, column=4, pady=10)
+        
+        # Establecer la conexión a la base de datos
+        conexion = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="easyvote"
+        )
+
+        # Crear un cursor para ejecutar consultas SQL
+        cursor = conexion.cursor()
+        
+        # Consulta SQL para actualizar el valor del voto
+        consulta = "UPDATE votantes SET voto = %s WHERE dni = %s"
+
+        # Ejecutar la consulta SQL con los valores de voto y dni
+        #cursor.execute(consulta, (nuevo_voto, dni))
+        
+        
         
     def iniciar_ventana(self):
         # Ejecutar el bucle principal de la aplicación
