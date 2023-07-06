@@ -1,5 +1,5 @@
-from votantes import Votante
-from persona import Persona
+from modelo.votantes import Votante
+from modelo.persona import Persona
 
 persona1 = Persona("11111111A", "Juan", "Pérez", "América", "Masculino", 30, "Candidato A")
 persona2 = Persona("22222222B", "María", "Gómez", "Europa", "Femenino", 28, "Candidato A")
