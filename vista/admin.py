@@ -18,7 +18,7 @@ class Admin:
 
         # Configurar propiedades de la ventana
         self.ventana.title("EasyVote")
-        self.ventana.geometry("600x400")  # Tamaño de la ventana en píxeles
+        self.ventana.geometry("800x400")  # Tamaño de la ventana en píxeles
 
         # Crear un contenedor para los botones
         self.contenedor = tk.Frame(self.ventana)

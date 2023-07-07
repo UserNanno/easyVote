@@ -27,7 +27,7 @@ class Login:
     # Función para validar el inicio de sesión
     def iniciar_sesion(self):
         dni = self.entry_dni.get()
-
+        print(type(dni))
         # Establecer la conexión a la base de datos
         conexion = mysql.connector.connect(
             host="localhost",
@@ -39,10 +39,38 @@ class Login:
         # Crear un cursor para ejecutar consultas SQL
         cursor = conexion.cursor()
 
-        # Consultar si el DNI existe en la base de datos//debe ser reemplazado con algoritmo de busqueda
-        consulta = "SELECT * FROM votantes WHERE dni = %s"
-        cursor.execute(consulta, (dni,))
-        resultado = cursor.fetchone()
+        # Consultar la columna deseada
+        consulta = "SELECT dni FROM votantes"
+        cursor.execute(consulta)
+        
+        # Obtener todos los valores de la columna
+        columna = [fila[0] for fila in cursor]
+        
+        
+        
+        #realiza la busqueda binaria(IMPORTANTE)<-------------------------------------------------------   BUSQUEDA BINARIA
+        #ordenar lista
+        columna = sorted(columna)
+        
+        inicio = 0
+        fin = len(columna) - 1
+        resultado=False
+        
+        print(dni)
+        while inicio <= fin:
+            medio = (inicio + fin) // 2
+            valor_medio = columna[medio]
+
+            if valor_medio == dni:
+                # El DNI fue encontrado
+                resultado= True
+                break
+            elif valor_medio < dni:
+                inicio = medio + 1
+            else:
+                fin = medio - 1
+        
+        #----------------------------------------------------------------------------------------
 
         if resultado:
             messagebox.showinfo("Bienvenido","Inicio de sesión exitoso")
