@@ -1,12 +1,9 @@
-nombres=["Candidato A","Candidato B","Candidato C","Candidato D",
-            "Candidato E","Candidato F","Candidato G","Candidato H",
-            
-            ]
-
-votos=[3215,6518,8495,6284,8495,9184,152,9514]
+#nombres=["Candidato A","Candidato B","Candidato C","Candidato D",
+#            "Candidato E","Candidato F","Candidato G","Candidato H",
+#votos=[3215,6518,8495,6284,8495,9184,152,9514]
 
 
-def quicksort_votos_candidatos(nombres, votos):
+def quicksort(nombres, votos):
     if len(votos) <= 1:
         return nombres, votos
 
@@ -26,14 +23,12 @@ def quicksort_votos_candidatos(nombres, votos):
             nombres_menores.append(nombre)
             votos_menores.append(voto)
 
-    nombres_ordenados_mayores, votos_ordenados_mayores = quicksort_votos_candidatos(nombres_mayores, votos_mayores)
-    nombres_ordenados_menores, votos_ordenados_menores = quicksort_votos_candidatos(nombres_menores, votos_menores)
+    nombres_ordenados_mayores, votos_ordenados_mayores = quicksort(nombres_mayores, votos_mayores)
+    nombres_ordenados_menores, votos_ordenados_menores = quicksort(nombres_menores, votos_menores)
 
     return nombres_ordenados_mayores + nombres_iguales + nombres_ordenados_menores, votos_ordenados_mayores + votos_iguales + votos_ordenados_menores
 
-nombres_ordenados, votos_ordenados = quicksort_votos_candidatos(nombres, votos)
+#nombres_ordenados, votos_ordenados = quicksort(nombres, votos)
 
-for nombre, voto in zip(nombres_ordenados, votos_ordenados):
-    print(nombre, ":", voto)
-
-
+#for nombre, voto in zip(nombres_ordenados, votos_ordenados):
+#    print(nombre, ":", voto)
