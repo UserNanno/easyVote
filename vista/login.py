@@ -7,21 +7,21 @@ from vista.votar import Votar
 class Login:
     def __init__(self):
         # Crear la ventana
-        self.login = tk.Tk()
+        self.ventana = tk.Tk()
 
         # Configurar propiedades de la ventana
-        self.login.title("Inicio de sesión")
-        self.login.geometry("300x200")  # Tamaño de la ventana en píxeles
+        self.ventana.title("Inicio de sesión")
+        self.ventana.geometry("300x200")  # Tamaño de la ventana en píxeles
 
         # Etiqueta y campo de entrada para el DNI
-        self.label_dni = tk.Label(self.login, text="DNI:")
+        self.label_dni = tk.Label(self.ventana, text="DNI:")
         self.label_dni.pack(pady=10)
 
-        self.entry_dni = tk.Entry(self.login)
+        self.entry_dni = tk.Entry(self.ventana)
         self.entry_dni.pack(pady=10)
 
         # Botón de inicio de sesión
-        self.boton_iniciar = tk.Button(self.login, text="Iniciar sesión", command=self.iniciar_sesion)
+        self.boton_iniciar = tk.Button(self.ventana, text="Iniciar sesión", command=self.iniciar_sesion)
         self.boton_iniciar.pack(pady=10)
 
     # Función para validar el inicio de sesión
@@ -75,7 +75,7 @@ class Login:
         if resultado:
             messagebox.showinfo("Bienvenido","Inicio de sesión exitoso")
             
-            self.login.destroy()
+            self.ventana.destroy()
             votar=Votar(dni)
             
         else:
@@ -87,4 +87,4 @@ class Login:
 
     # Ejecutar el bucle principal de la aplicación
     def iniciar(self):
-        self.login.mainloop()
+        self.ventana.mainloop()

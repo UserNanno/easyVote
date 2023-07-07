@@ -3,8 +3,9 @@ from tkinter import messagebox
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from database import Database
-from sort import merge_sort
+from mergesort import merge_sort
 from votante import Votante
+
 
 class GraficoEdad:
     def __init__(self):
@@ -31,6 +32,10 @@ class GraficoEdad:
                                 command=self.analyze_voters)
         self.button.pack()
 
+        button_new_filter = tk.Button(
+            self.root, text="Nuevo Filtro", command=self.restart_program)
+        button_new_filter.pack()
+
         self.canvas = tk.Canvas(self.root, width=400, height=300)
         self.canvas.pack()
 
@@ -39,16 +44,21 @@ class GraficoEdad:
 
     def run(self):
         self.root.mainloop()
+        
 
     def close_button_click_handler(self):
-        self.root.destroy()    
+        self.root.destroy()
 
     def analyze_voters(self):
-        rango_edad_min = int(self.entry_min.get())
-        rango_edad_max = int(self.entry_max.get())
-        if not rango_edad_min or not rango_edad_max:
-            messagebox.showinfo(
-                "Información", "Por favor, ingrese valores para el rango de edad.")
+        rango_edad_min = self.entry_min.get()
+        rango_edad_max = self.entry_max.get()
+
+        if not rango_edad_min.strip() or not rango_edad_max.strip():
+            messagebox.showinfo("Información", "Ingrese valores para el rango de edad.")
+            return
+
+        if not rango_edad_min.isdigit() or not rango_edad_max.isdigit():
+            messagebox.showinfo("Información", "Ingrese valores numéricos para el rango de edad.")
             return
 
         rango_edad_min = int(rango_edad_min)
@@ -81,11 +91,11 @@ class GraficoEdad:
         else:
             messagebox.showinfo(
                 "Información", "No se encontraron votos para el rango de edad especificado.")
+            self.reset_graph()  # Borrar la gráfica actual
 
         self.database.close()
 
     def plot_graph(self, candidatos, votos):
-        self.canvas.delete("all")
 
         fig, ax = plt.subplots(figsize=(8, 6))
         ax.barh(candidatos, votos)
@@ -101,6 +111,11 @@ class GraficoEdad:
         canvas = FigureCanvasTkAgg(fig, master=self.canvas)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+    def restart_program(self):
+        self.root.destroy()  # Cerrar la ventana actual
+        new_analyzer = GraficoEdad()  # Crear una nueva instancia de GraficoEdad
+        new_analyzer.run()  # Ejecutar el programa nuevamente
 
 
 if __name__ == "__main__":
