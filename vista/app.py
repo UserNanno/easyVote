@@ -32,7 +32,6 @@ class App:
     # Funciones para los botones
     def boton1_click(self):
         login_app = Login()
-        
 
     def boton2_click(self):
         estadistica =Estadistica()
