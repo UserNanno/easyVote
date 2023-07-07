@@ -39,7 +39,11 @@ class Grafico:
             self.votos.append(votos)
         
         
+        
         self.candidatos, self.votos = quicksort(self.candidatos, self.votos)
+        
+        for voto in self.votos:
+            print(voto)
         
         #---------------
         
@@ -59,6 +63,9 @@ class Grafico:
         # Configurar los datos en el eje de barras
         ax.bar(self.candidatos, self.votos)
 
+        for i, v in enumerate(self.votos):
+            ax.text(i, v, str(v), ha='center', va='bottom')
+            
         # Crear lienzo para el gráfico de Matplotlib
         lienzo = FigureCanvasTkAgg(fig, master=ventana)
         lienzo.draw()
