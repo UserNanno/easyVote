@@ -52,9 +52,9 @@ if conexion.is_connected():
                        'Lambayeque', 'Callao', 'Tumbes', 'Pasco', 'Ucayali', 'Amazonas', 
                        'Ancash', 'Ica', 'Loreto']
     
-    candidato_disponible=["Candidato A","Candidato B","Candidato C","Candidato D",
-            "Candidato E","Candidato F","Candidato G","Candidato H",
-            "Candidato I","Candidato J" ]
+    candidato_disponible=["A","B","C","D",
+            "E","F","G","H",
+            "I","J" ]
 
     # Generar y insertar DNIs y nombres juntos
     registros = []  # Lista para almacenar los registros
