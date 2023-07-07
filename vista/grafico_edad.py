@@ -8,9 +8,9 @@ from votante import Votante
 
 class GraficoEdad:
     def __init__(self):
-        self.database = Database('localhost',"root","","easyvote")
+        self.database = Database("localhost", "root", "", "easyvote")
         self.root = tk.Tk()
-        self.root.title("Voter Analyzer")
+        self.root.title("Estadísitca por Edad")
 
         self.label_min = tk.Label(self.root, text="Rango de edad mínimo:")
         self.label_min.pack()
@@ -22,7 +22,13 @@ class GraficoEdad:
         self.entry_max = tk.Entry(self.root)
         self.entry_max.pack()
 
-        self.button = tk.Button(self.root, text="Filtrar", command=self.analyze_voters)
+        # Crear el botón "Cerrar"
+        button_close = tk.Button(
+            self.root, text="Cerrar", command=self.close_button_click_handler)
+        button_close.pack()
+
+        self.button = tk.Button(self.root, text="Filtrar",
+                                command=self.analyze_voters)
         self.button.pack()
 
         self.canvas = tk.Canvas(self.root, width=400, height=300)
@@ -34,9 +40,19 @@ class GraficoEdad:
     def run(self):
         self.root.mainloop()
 
+    def close_button_click_handler(self):
+        self.root.destroy()    
+
     def analyze_voters(self):
         rango_edad_min = int(self.entry_min.get())
         rango_edad_max = int(self.entry_max.get())
+        if not rango_edad_min or not rango_edad_max:
+            messagebox.showinfo(
+                "Información", "Por favor, ingrese valores para el rango de edad.")
+            return
+
+        rango_edad_min = int(rango_edad_min)
+        rango_edad_max = int(rango_edad_max)
 
         self.database.connect()
 
@@ -52,16 +68,19 @@ class GraficoEdad:
                 else:
                     votos_por_candidato[candidato] = 1
 
-            resultados_ordenados = merge_sort(list(votos_por_candidato.items()))
+            resultados_ordenados = merge_sort(
+                list(votos_por_candidato.items()))
             candidatos = [candidato[0] for candidato in resultados_ordenados]
             votos = [candidato[1] for candidato in resultados_ordenados]
             total_votos = sum(votos)
 
             self.plot_graph(candidatos, votos)
-            self.total_votes_label.config(text=f"Total de votos contabilizados: {total_votos}")
+            self.total_votes_label.config(
+                text=f"Total de votos contabilizados: {total_votos}")
 
         else:
-            messagebox.showinfo("Información", "No se encontraron votos para el rango de edad especificado.")
+            messagebox.showinfo(
+                "Información", "No se encontraron votos para el rango de edad especificado.")
 
         self.database.close()
 
