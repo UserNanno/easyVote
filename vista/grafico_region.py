@@ -5,10 +5,16 @@ from matplotlib.figure import Figure
 
 class GraficoRegion:
     def __init__(self):
-        self.candidatos = ['A','B','C','D','E','F','G','H','I','J']
-        self.votosRegion1 = [150, 200, 300, 250, 180, 220, 280, 190, 210, 240]  # DATOS DE PRUEBA, SE DEBE REEMPLAZAR
-        self.votosRegion2 = [200, 300, 250, 180, 220, 280, 190, 210, 240, 100]
+        self.candidatos = []
+        self.votosRegion = []  # DATOS DE PRUEBA, SE DEBE REEMPLAZAR
         
+        self.region_disponible = ['Amazonas', 'Ancash', 'Apurímac', 'Arequipa', 'Ayacucho', 
+                                  'Cajamarca', 'Callao', 'Cusco', 'Huancavelica', 'Huánuco', 
+                                  'Ica', 'Junín', 'La Libertad', 'Lambayeque', 'Lima', 'Loreto', 
+                                  'Madre de Dios', 'Moquegua', 'Pasco', 'Piura', 'Puno', 'San Martín', 
+                                  'Tacna', 'Tumbes', 'Ucayali']
+
+
     def crear_grafico(self):
         # Crear ventana
         ventana = tk.Tk()
@@ -22,23 +28,22 @@ class GraficoRegion:
 
         # Obtener el valor seleccionado del combobox
         def actualizar_grafico(event):
+            self.candidatos = [] // deben ser traidos de la función
+            self.votosRegion = [] 
+            
             seleccion = combo.get()
-            if seleccion == "Región 1":
-                ax.clear()
-                ax.bar(self.candidatos, self.votosRegion1)
-            elif seleccion == "Región 2":
-                ax.clear()
-                ax.bar(self.candidatos, self.votosRegion2)
+            ax.clear()
+            ax.bar(self.candidatos, self.votosRegion)
             lienzo.draw()
 
         # Crear combobox para seleccionar los datos
-        combo = ttk.Combobox(ventana, values=["Región 1", "Región 2"])
+        combo = ttk.Combobox(ventana, values=self.region_disponible)
         combo.pack(pady=10)
         combo.current(0)  # Establecer el valor inicial del combobox
         combo.bind("<<ComboboxSelected>>", actualizar_grafico)
 
         # Configurar los datos iniciales en el eje de barras
-        ax.bar(self.candidatos, self.votosRegion1)
+        ax.bar(self.candidatos, self.votosRegion)
 
         # Crear lienzo para el gráfico de Matplotlib
         lienzo = FigureCanvasTkAgg(fig, master=ventana)
@@ -46,6 +51,7 @@ class GraficoRegion:
         lienzo.get_tk_widget().pack()
 
         ventana.mainloop()
+
 
 if __name__ == '__main__':
     grafico = GraficoRegion()
