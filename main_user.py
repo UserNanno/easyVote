@@ -1,6 +1,6 @@
 import sys
 sys.path.append("./vista") 
-from login import Login
+from vista.login import Login
 
 ventana_app = Login()
 ventana_app.iniciar()
