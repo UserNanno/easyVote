@@ -1,9 +1,8 @@
 import tkinter as tk
 from votante_manager import VotanteManager
-from login import Login
+from log import Login
 
 def button_click_handler():
-
     app = Login()
     app.iniciar()
 
