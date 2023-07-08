@@ -43,7 +43,7 @@ class Grafico:
         self.candidatos, self.votos = quicksort(self.candidatos, self.votos)
         end_time = time.perf_counter()  # Guardar el tiempo de finalización
         tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
-        print("Tiempo transcurrido:", tiempo_transcurrido)
+        print("Tiempo transcurrido (quicksort):", tiempo_transcurrido)
         
     def crear_grafico(self):
         # Crear ventana

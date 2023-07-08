@@ -67,7 +67,7 @@ class GraficoGenero:
         self.candidatosF, self.votosF = burbuja(self.candidatosF, self.votosF)
         end_time = time.perf_counter()  # Guardar el tiempo de finalización
         tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
-        print("Tiempo transcurrido:", tiempo_transcurrido)
+        print("Tiempo transcurrido (Burbuja):", tiempo_transcurrido)
         
         
 
