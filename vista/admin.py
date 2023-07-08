@@ -25,10 +25,10 @@ class Admin:
         self.contenedor.pack(pady=50)
 
         # Crear los botones dentro del contenedor
-        self.boton1 = tk.Button(self.contenedor, text="Estadística\nGeneral", width=20, height=10, command=self.boton1_click)
-        self.boton2 = tk.Button(self.contenedor, text="Estadística por\nRegión", width=20, height=10, command=self.boton2_click)
-        self.boton3 = tk.Button(self.contenedor, text="Estadística por\nGénero", width=20, height=10, command=self.boton3_click)
-        self.boton4 = tk.Button(self.contenedor, text="Estadística por\nEdad", width=20, height=10, command=self.boton4_click)
+        self.boton1 = tk.Button(self.contenedor, text="Estadística\nGeneral\nQUICKSORT", width=20, height=10, command=self.boton1_click)
+        self.boton2 = tk.Button(self.contenedor, text="Estadística por\nRegión\nHEAPSORT", width=20, height=10, command=self.boton2_click)
+        self.boton3 = tk.Button(self.contenedor, text="Estadística por\nGénero\nBURBUJA", width=20, height=10, command=self.boton3_click)
+        self.boton4 = tk.Button(self.contenedor, text="Estadística por\nEdad\nMERGESORT", width=20, height=10, command=self.boton4_click)
         self.boton_salir = tk.Button(self.contenedor, text="Salir", width=20, height=10, command=self.boton_salir_click)
         
         # Ubicar los botones dentro del contenedor
