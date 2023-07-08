@@ -4,6 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import mysql.connector
 from Quicksort import quicksort
+from Burbuja import burbuja
 
 
 class GraficoGenero:
@@ -62,8 +63,8 @@ class GraficoGenero:
             self.candidatosF.append(candidato)
             self.votosF.append(votos)
         
-        self.candidatosM, self.votosM = quicksort(self.candidatosM, self.votosM)
-        self.candidatosF, self.votosF = quicksort(self.candidatosF, self.votosF)
+        self.candidatosM, self.votosM = burbuja(self.candidatosM, self.votosM)
+        self.candidatosF, self.votosF = burbuja(self.candidatosF, self.votosF)
         
 
         
