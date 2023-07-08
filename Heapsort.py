@@ -1,7 +1,7 @@
 import mysql.connector
 
 
-def heapsort(region):
+def heapsort(departamento):
     candidatos = []
     votos = []
     
@@ -20,9 +20,9 @@ def heapsort(region):
     consulta = """
         SELECT voto, COUNT(*) AS cantidad_votos
         FROM votantes
-        WHERE region = '{}'
+        WHERE departamento = '{}'
         GROUP BY voto
-        """.format(region)
+        """.format(departamento)
 
     # Ejecutar la consulta
     cursor.execute(consulta)

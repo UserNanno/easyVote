@@ -73,24 +73,25 @@ class GraficoGenero:
     def crear_grafico(self):
         # Crear ventana
         ventana = tk.Tk()
-        ventana.title("Gráfico de Barras Genero")
+        ventana.title("Gráfico de Barras Género")
+        ventana.geometry("1200x800")
 
         # Crear figura de Matplotlib
-        fig = Figure(figsize=(10, 4), dpi=100)
+        fig = Figure(figsize=(12, 8), dpi=100)
 
         # Crear eje de barras para el primer gráfico
         ax1 = fig.add_subplot(121)
-        ax1.bar(self.candidatosM, self.votosM)
+        ax1.barh(self.candidatosM, self.votosM)  # Usar barh para barras horizontales
         for i, v in enumerate(self.votosM):
-            ax1.text(i, v, str(v), ha='center', va='bottom')
+            ax1.text(v, i, str(v), ha='left', va='center')  # Ajustar posición de los textos
         ax1.set_title("Masculino")
 
         # Crear eje de barras para el segundo gráfico
         ax2 = fig.add_subplot(122)
-        ax2.bar(self.candidatosF, self.votosF, color='red')
+        ax2.barh(self.candidatosF, self.votosF, color='red')  # Usar barh para barras horizontales
         
         for i, v in enumerate(self.votosF):
-            ax2.text(i, v, str(v), ha='center', va='bottom')
+            ax2.text(v, i, str(v), ha='left', va='center')  # Ajustar posición de los textos
         ax2.set_title("Femenino")
 
         # Crear lienzo para el gráfico de Matplotlib
@@ -101,5 +102,6 @@ class GraficoGenero:
         ventana.mainloop()
 
 
-
-
+if __name__ == '__main__':
+    grafico = GraficoGenero()
+    grafico.crear_grafico()

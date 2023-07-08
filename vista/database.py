@@ -1,6 +1,6 @@
 import mysql.connector
 from votante import Votante
-
+from candidato import Candidato
 
 class Database:
     def __init__(self, host, user, password, db):
@@ -34,6 +34,17 @@ class Database:
             votantes.append(votante)
 
         return votantes
+    
+    def fetch_candidatos(self, query):
+        self.cursor.execute(query)
+        resultados = self.cursor.fetchall()
+
+        candidatos = []
+        for fila in resultados:
+            candidato = Candidato(fila[0], fila[1], fila[2],fila[3])
+            candidatos.append(candidato)
+
+        return candidatos
 
     def close(self):
         if self.cursor:
