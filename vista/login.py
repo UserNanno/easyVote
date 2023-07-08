@@ -57,7 +57,7 @@ class Login:
         resultado = busqueda_binaria(columna, dni)  # Llamada a la función de búsqueda binaria
         end_time = time.perf_counter()  # Guardar el tiempo de finalización
         tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
-        print("Tiempo transcurrido:", tiempo_transcurrido)
+        print("Tiempo transcurrido (Busqueda Binaria):", tiempo_transcurrido)
         
         
         if resultado:
