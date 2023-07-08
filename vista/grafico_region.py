@@ -33,6 +33,10 @@ class GraficoRegion:
             
             ax.clear()
             ax.bar(self.candidatos, self.votosRegion)
+            
+            for i, v in enumerate(self.votosRegion):
+                ax.text(i, v, str(v), ha='center', va='bottom')
+            
             lienzo.draw()
 
         # Crear combobox para seleccionar los datos
