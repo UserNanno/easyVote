@@ -42,8 +42,7 @@ class Grafico:
         
         self.candidatos, self.votos = quicksort(self.candidatos, self.votos)
         
-        for voto in self.votos:
-            print(voto)
+    
         
         #---------------
         

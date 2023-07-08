@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import font
 import mysql.connector
 from vista.votar import Votar
 from busqueda_binaria import busqueda_binaria
@@ -14,7 +15,14 @@ class Login:
         self.ventana.geometry("300x200")  # Tamaño de la ventana en píxeles
 
         # Etiqueta y campo de entrada para el DNI
-        self.label_dni = tk.Label(self.ventana, text="DNI:")
+        self.label_easyvote= tk.Label(self.ventana, text="EasyVote")
+        # Configurar opciones de formato
+        fuente = font.Font(weight="bold", size=16)
+        self.label_easyvote.configure(font=fuente)
+        self.label_easyvote.pack(pady=15)
+        
+        # Etiqueta y campo de entrada para el DNI
+        self.label_dni = tk.Label(self.ventana, text="Ingrese su DNI:")
         self.label_dni.pack(pady=10)
 
         self.entry_dni = tk.Entry(self.ventana)
