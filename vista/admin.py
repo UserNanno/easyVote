@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import font
 from grafico import Grafico
 from grafico_genero import GraficoGenero
 from grafico_edad import GraficoEdad
@@ -13,7 +14,9 @@ class Admin:
         self.ventana = tk.Tk()
 
         # Agregar contenido a la ventana
-        self.etiqueta = tk.Label(self.ventana, text="SISTEMA DE VOTACIÓN ELECTRÓNICO")
+        self.etiqueta = tk.Label(self.ventana, text="ESTADISTICAS DE LAS ELECCIONES")
+        fuente = font.Font(weight="bold", size=16)
+        self.etiqueta.configure(font=fuente)
         self.etiqueta.pack(pady=30)
 
         # Configurar propiedades de la ventana
@@ -25,10 +28,10 @@ class Admin:
         self.contenedor.pack(pady=50)
 
         # Crear los botones dentro del contenedor
-        self.boton1 = tk.Button(self.contenedor, text="Estadística\nGeneral", width=20, height=10, command=self.boton1_click)
-        self.boton2 = tk.Button(self.contenedor, text="Estadística por\nRegión", width=20, height=10, command=self.boton2_click)
-        self.boton3 = tk.Button(self.contenedor, text="Estadística por\nGénero", width=20, height=10, command=self.boton3_click)
-        self.boton4 = tk.Button(self.contenedor, text="Estadística por\nEdad", width=20, height=10, command=self.boton4_click)
+        self.boton1 = tk.Button(self.contenedor, text="Estadística\nGeneral\nQUICKSORT", width=20, height=10, command=self.boton1_click)
+        self.boton2 = tk.Button(self.contenedor, text="Estadística por\nRegión\nHEAPSORT", width=20, height=10, command=self.boton2_click)
+        self.boton3 = tk.Button(self.contenedor, text="Estadística por\nGénero\nBURBUJA", width=20, height=10, command=self.boton3_click)
+        self.boton4 = tk.Button(self.contenedor, text="Estadística por\nEdad\nMERGESORT", width=20, height=10, command=self.boton4_click)
         self.boton_salir = tk.Button(self.contenedor, text="Salir", width=20, height=10, command=self.boton_salir_click)
         
         # Ubicar los botones dentro del contenedor
