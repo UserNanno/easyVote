@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
 from vista.votar import Votar
-
+from busqueda_binaria import busqueda_binaria
 
 class Login:
     def __init__(self):
@@ -27,7 +27,7 @@ class Login:
     # Función para validar el inicio de sesión
     def iniciar_sesion(self):
         dni = self.entry_dni.get()
-        print(type(dni))
+
         # Establecer la conexión a la base de datos
         conexion = mysql.connector.connect(
             host="localhost",
@@ -42,42 +42,15 @@ class Login:
         # Consultar la columna deseada
         consulta = "SELECT dni FROM votantes"
         cursor.execute(consulta)
-        
-        # Obtener todos los valores de la columna
         columna = [fila[0] for fila in cursor]
-        
-        
-        
-        #realiza la busqueda binaria(IMPORTANTE)<-------------------------------------------------------   BUSQUEDA BINARIA
-        #ordenar lista
-        columna = sorted(columna)
-        
-        inicio = 0
-        fin = len(columna) - 1
-        resultado=False
-        
-        print(dni)
-        while inicio <= fin:
-            medio = (inicio + fin) // 2
-            valor_medio = columna[medio]
 
-            if valor_medio == dni:
-                # El DNI fue encontrado
-                resultado= True
-                break
-            elif valor_medio < dni:
-                inicio = medio + 1
-            else:
-                fin = medio - 1
-        
-        #----------------------------------------------------------------------------------------
+        resultado = busqueda_binaria(columna, dni)  # Llamada a la función de búsqueda binaria
 
         if resultado:
-            messagebox.showinfo("Bienvenido","Inicio de sesión exitoso")
-            
+            messagebox.showinfo("Bienvenido", "Inicio de sesión exitoso")
             self.ventana.destroy()
-            votar=Votar(dni)
-            
+            votar = Votar(dni)
+
         else:
             messagebox.showinfo("Alerta", "El DNI no es válido")
 
@@ -88,3 +61,8 @@ class Login:
     # Ejecutar el bucle principal de la aplicación
     def iniciar(self):
         self.ventana.mainloop()
+
+# Ejemplo de uso de la clase Login
+if __name__ == "__main__":
+    login = Login()
+    login.iniciar()

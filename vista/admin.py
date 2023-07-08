@@ -44,8 +44,8 @@ class Admin:
         grafico.crear_grafico()
 
     def boton2_click(self):
-        grafico=Grafico()
-        grafico.crear_grafico()
+        grafico1=Grafico()
+        grafico1.crear_grafico()
         
     def boton3_click(self):
         grafico3=GraficoGenero()
