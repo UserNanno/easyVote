@@ -2,6 +2,7 @@ import tkinter as tk
 from grafico import Grafico
 from grafico_genero import GraficoGenero
 from grafico_edad import GraficoEdad
+from grafico_region import GraficoRegion
 from login import Login
 
 
@@ -39,13 +40,12 @@ class Admin:
 
     # Funciones para los botones
     def boton1_click(self):
-        
-        grafico=Grafico()
-        grafico.crear_grafico()
-
-    def boton2_click(self):
         grafico1=Grafico()
         grafico1.crear_grafico()
+
+    def boton2_click(self):
+        grafico2=GraficoRegion()
+        grafico2.crear_grafico()
         
     def boton3_click(self):
         grafico3=GraficoGenero()
