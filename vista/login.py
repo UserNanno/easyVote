@@ -58,6 +58,7 @@ class Login:
             messagebox.showinfo("Bienvenido", "Inicio de sesión exitoso")
             self.ventana.destroy()
             votar = Votar(dni)
+            votar.iniciar_ventana()
 
         else:
             messagebox.showinfo("Alerta", "El DNI no es válido")

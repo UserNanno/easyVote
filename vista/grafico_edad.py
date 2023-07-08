@@ -66,7 +66,7 @@ class GraficoEdad:
 
         self.database.connect()
 
-        query = f"SELECT dni, nombre, apellido, region, genero, edad, voto FROM votantes WHERE edad >= {rango_edad_min} AND edad <= {rango_edad_max}"
+        query = f"SELECT dni, nombre, apellido, departamento, genero, edad, voto FROM votantes WHERE edad >= {rango_edad_min} AND edad <= {rango_edad_max}"
         votantes = self.database.fetch_votantes(query)
 
         if votantes:

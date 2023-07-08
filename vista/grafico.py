@@ -38,23 +38,16 @@ class Grafico:
             self.candidatos.append(candidato)
             self.votos.append(votos)
         
-        
-        
         self.candidatos, self.votos = quicksort(self.candidatos, self.votos)
         
-    
-        
-        #---------------
-        
-        
-
     def crear_grafico(self):
         # Crear ventana
         ventana = tk.Tk()
         ventana.title("Gráfico de Barras")
+        ventana.geometry("800x600")
 
         # Crear figura de Matplotlib
-        fig = Figure(figsize=(6, 4), dpi=100)
+        fig = Figure(figsize=(8, 6), dpi=100)
 
         # Crear eje de barras
         ax = fig.add_subplot(111)

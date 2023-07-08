@@ -4,12 +4,12 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from Heapsort import heapsort
 
-class GraficoRegion:
+class GraficoDepartamento:
     def __init__(self):
         self.candidatos = []
-        self.votosRegion = []  # DATOS DE PRUEBA, SE DEBE REEMPLAZAR
+        self.votosDepartamento = []  # DATOS DE PRUEBA, SE DEBE REEMPLAZAR
         
-        self.region_disponible = ['Amazonas', 'Ancash', 'Apurímac', 'Arequipa', 'Ayacucho', 
+        self.departamento_disponible = ['Amazonas', 'Ancash', 'Apurímac', 'Arequipa', 'Ayacucho', 
                                   'Cajamarca', 'Callao', 'Cusco', 'Huancavelica', 'Huánuco', 
                                   'Ica', 'Junín', 'La Libertad', 'Lambayeque', 'Lima', 'Loreto', 
                                   'Madre de Dios', 'Moquegua', 'Pasco', 'Piura', 'Puno', 'San Martín', 
@@ -19,9 +19,10 @@ class GraficoRegion:
         # Crear ventana
         ventana = tk.Tk()
         ventana.title("Gráfico de Barras")
+        ventana.geometry("800x600")
 
         # Crear figura de Matplotlib
-        fig = Figure(figsize=(6, 4), dpi=100)
+        fig = Figure(figsize=(8, 6), dpi=100)
 
         # Crear eje de barras
         ax = fig.add_subplot(111)
@@ -29,25 +30,25 @@ class GraficoRegion:
         # Obtener el valor seleccionado del combobox
         def actualizar_grafico(event):
             seleccion = combo.get()
-            self.candidatos, self.votosRegion = heapsort(combo.get())
+            self.candidatos, self.votosDepartamento = heapsort(combo.get())
             
             ax.clear()
-            ax.bar(self.candidatos, self.votosRegion)
+            ax.bar(self.candidatos, self.votosDepartamento)
             
-            for i, v in enumerate(self.votosRegion):
+            for i, v in enumerate(self.votosDepartamento):
                 ax.text(i, v, str(v), ha='center', va='bottom')
             
             lienzo.draw()
 
         # Crear combobox para seleccionar los datos
-        combo = ttk.Combobox(ventana, values=self.region_disponible)
+        combo = ttk.Combobox(ventana, values=self.departamento_disponible)
         combo.pack(pady=10)
         combo.current(0)  # Establecer el valor inicial del combobox
         combo.bind("<<ComboboxSelected>>", actualizar_grafico)
 
         # Configurar los datos iniciales en el eje de barras
-        self.candidatos, self.votosRegion = heapsort(combo.get())
-        ax.bar(self.candidatos, self.votosRegion)
+        self.candidatos, self.votosDepartamento = heapsort(combo.get())
+        ax.bar(self.candidatos, self.votosDepartamento)
 
         # Crear lienzo para el gráfico de Matplotlib
         lienzo = FigureCanvasTkAgg(fig, master=ventana)
@@ -61,5 +62,5 @@ class GraficoRegion:
 
 
 if __name__ == '__main__':
-    grafico = GraficoRegion()
+    grafico = GraficoDepartamento()
     grafico.crear_grafico()
