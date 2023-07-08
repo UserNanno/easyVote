@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
+from Heapsort import heapsort
 
 class GraficoRegion:
     def __init__(self):
@@ -13,7 +14,6 @@ class GraficoRegion:
                                   'Ica', 'Junín', 'La Libertad', 'Lambayeque', 'Lima', 'Loreto', 
                                   'Madre de Dios', 'Moquegua', 'Pasco', 'Piura', 'Puno', 'San Martín', 
                                   'Tacna', 'Tumbes', 'Ucayali']
-
 
     def crear_grafico(self):
         # Crear ventana
@@ -28,10 +28,9 @@ class GraficoRegion:
 
         # Obtener el valor seleccionado del combobox
         def actualizar_grafico(event):
-            self.candidatos = [] // deben ser traidos de la función
-            self.votosRegion = [] 
-            
             seleccion = combo.get()
+            self.candidatos, self.votosRegion = heapsort(combo.get())
+            
             ax.clear()
             ax.bar(self.candidatos, self.votosRegion)
             lienzo.draw()
@@ -43,12 +42,16 @@ class GraficoRegion:
         combo.bind("<<ComboboxSelected>>", actualizar_grafico)
 
         # Configurar los datos iniciales en el eje de barras
+        self.candidatos, self.votosRegion = heapsort(combo.get())
         ax.bar(self.candidatos, self.votosRegion)
 
         # Crear lienzo para el gráfico de Matplotlib
         lienzo = FigureCanvasTkAgg(fig, master=ventana)
         lienzo.draw()
         lienzo.get_tk_widget().pack()
+
+        # Mostrar el gráfico al iniciar
+        actualizar_grafico(None)
 
         ventana.mainloop()
 

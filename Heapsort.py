@@ -1,6 +1,10 @@
 import mysql.connector
 
-def ordenar_votos_por_region(region):
+
+def heapsort(region):
+    candidatos = []
+    votos = []
+    
     # Establecer conexión con la base de datos
     conexion = mysql.connector.connect(
         host="localhost",
@@ -16,9 +20,9 @@ def ordenar_votos_por_region(region):
     consulta = """
         SELECT voto, COUNT(*) AS cantidad_votos
         FROM votantes
+        WHERE region = '{}'
         GROUP BY voto
-        WHERE region = '{region}'
-        """
+        """.format(region)
 
     # Ejecutar la consulta
     cursor.execute(consulta)
@@ -26,47 +30,50 @@ def ordenar_votos_por_region(region):
     # Obtener los resultados
     resultados = cursor.fetchall()
     
-    # extrayendo la informacón en listas
-    for candidato, votos in resultados:
-            self.candidatos.append(candidato)
-            self.votos.append(votos)
+    # Extrayendo la información en listas
+    for candidato, voto in resultados:
+        candidatos.append(candidato)
+        votos.append(voto)
+        
+    heapsort_candidatos(candidatos, votos) 
 
-    def heapify(arr, n, i):
-        largest = i
-        l = 2 * i + 1
-        r = 2 * i + 2
+    return candidatos, votos
+    
 
-        if l < n and arr[i][2] < arr[l][2]:
-            largest = l
+def heapsort_candidatos(candidatos, votos):
+    n = len(votos)
 
-        if r < n and arr[largest][2] < arr[r][2]:
-            largest = r
+    # Construir un heap máximo
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(candidatos, votos, n, i)
 
-        if largest != i:
-            arr[i], arr[largest] = arr[largest], arr[i]
-            heapify(arr, n, largest)
+    # Extraer los elementos uno por uno del heap
+    for i in range(n - 1, 0, -1):
+        # Intercambiar el elemento raíz (mayor) con el último elemento sin ordenar
+        candidatos[i], candidatos[0] = candidatos[0], candidatos[i]
+        votos[i], votos[0] = votos[0], votos[i]
 
+        # Llamar a heapify en el heap reducido
+        heapify(candidatos, votos, i, 0)
 
-    def heapSort(arr):
-        n = len(arr)
+def heapify(candidatos, votos, n, i):
+    largest = i  # Inicializar el nodo raíz como el más grande
+    l = 2 * i + 1  # Hijo izquierdo
+    r = 2 * i + 2  # Hijo derecho
 
-        for i in range(n // 2 - 1, -1, -1):
-            heapify(arr, n, i)
+    # Si el hijo izquierdo es más grande que la raíz
+    if l < n and votos[l] > votos[largest]:
+        largest = l
 
-        for i in range(n - 1, 0, -1):
-            arr[i], arr[0] = arr[0], arr[i]
-            heapify(arr, i, 0)
+    # Si el hijo derecho es más grande que la raíz o el hijo izquierdo
+    if r < n and votos[r] > votos[largest]:
+        largest = r
 
-    # Ordenar los candidatos por votos utilizando HeapSort en orden descendente
-    heapSort(resultados)
-    resultados.reverse()
+    # Si el nodo raíz no es el más grande
+    if largest != i:
+        # Intercambiar la raíz con el nodo más grande
+        candidatos[i], candidatos[largest] = candidatos[largest], candidatos[i]
+        votos[i], votos[largest] = votos[largest], votos[i]
 
-    # Mostrar los candidatos ordenados
-    for candidato in resultados:
-        print(f"Región: {region}, Voto: {candidato[0]}, Género: {candidato[1]}, Edad: {candidato[2]}")
-
-    # Cerrar la conexión con la base de datos
-    conexion.close()
-
-
-
+        # Llamar recursivamente a heapify en el subárbol afectado
+        heapify(candidatos, votos, n, largest)
