@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import font
 from grafico import Grafico
 from grafico_genero import GraficoGenero
 from grafico_edad import GraficoEdad
@@ -13,7 +14,9 @@ class Admin:
         self.ventana = tk.Tk()
 
         # Agregar contenido a la ventana
-        self.etiqueta = tk.Label(self.ventana, text="SISTEMA DE VOTACIÓN ELECTRÓNICO")
+        self.etiqueta = tk.Label(self.ventana, text="ESTADISTICAS DE LAS ELECCIONES")
+        fuente = font.Font(weight="bold", size=16)
+        self.etiqueta.configure(font=fuente)
         self.etiqueta.pack(pady=30)
 
         # Configurar propiedades de la ventana
