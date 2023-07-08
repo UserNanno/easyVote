@@ -4,6 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from Quicksort import quicksort
 import mysql.connector
+import time
 
 class Grafico:
     def __init__(self):
@@ -37,8 +38,12 @@ class Grafico:
         for candidato, votos in resultados:
             self.candidatos.append(candidato)
             self.votos.append(votos)
-        
+            
+        start_time = time.perf_counter()  # Guardar el tiempo de inicio
         self.candidatos, self.votos = quicksort(self.candidatos, self.votos)
+        end_time = time.perf_counter()  # Guardar el tiempo de finalización
+        tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
+        print("Tiempo transcurrido (quicksort):", tiempo_transcurrido)
         
     def crear_grafico(self):
         # Crear ventana

@@ -5,7 +5,7 @@ from matplotlib.figure import Figure
 import mysql.connector
 from Quicksort import quicksort
 from Burbuja import burbuja
-
+import time
 
 class GraficoGenero:
     def __init__(self):
@@ -62,9 +62,13 @@ class GraficoGenero:
         for candidato, votos in resultadosF:
             self.candidatosF.append(candidato)
             self.votosF.append(votos)
-        
+        start_time = time.perf_counter()  # Guardar el tiempo de inicio
         self.candidatosM, self.votosM = burbuja(self.candidatosM, self.votosM)
         self.candidatosF, self.votosF = burbuja(self.candidatosF, self.votosF)
+        end_time = time.perf_counter()  # Guardar el tiempo de finalización
+        tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
+        print("Tiempo transcurrido (Burbuja):", tiempo_transcurrido)
+        
         
 
         

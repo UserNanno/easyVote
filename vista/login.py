@@ -4,6 +4,7 @@ from tkinter import font
 import mysql.connector
 from vista.votar import Votar
 from busqueda_binaria import busqueda_binaria
+import time
 
 class Login:
     def __init__(self):
@@ -51,9 +52,14 @@ class Login:
         consulta = "SELECT dni FROM votantes"
         cursor.execute(consulta)
         columna = [fila[0] for fila in cursor]
-
+        
+        start_time = time.perf_counter()  # Guardar el tiempo de inicio
         resultado = busqueda_binaria(columna, dni)  # Llamada a la función de búsqueda binaria
-
+        end_time = time.perf_counter()  # Guardar el tiempo de finalización
+        tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
+        print("Tiempo transcurrido:", tiempo_transcurrido)
+        
+        
         if resultado:
             messagebox.showinfo("Bienvenido", "Inicio de sesión exitoso")
             self.ventana.destroy()
