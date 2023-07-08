@@ -3,6 +3,7 @@ from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from Heapsort import heapsort
+import time
 
 class GraficoDepartamento:
     def __init__(self):
@@ -30,8 +31,11 @@ class GraficoDepartamento:
         # Obtener el valor seleccionado del combobox
         def actualizar_grafico(event):
             seleccion = combo.get()
+            start_time = time.time()
             self.candidatos, self.votosDepartamento = heapsort(combo.get())
-            
+            end_time = time.time()  # Guardar el tiempo de finalización
+            tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
+            print("Tiempo transcurrido obtener:", tiempo_transcurrido)
             ax.clear()
             ax.bar(self.candidatos, self.votosDepartamento)
             
@@ -47,7 +51,11 @@ class GraficoDepartamento:
         combo.bind("<<ComboboxSelected>>", actualizar_grafico)
 
         # Configurar los datos iniciales en el eje de barras
+        start_time = time.perf_counter()  # Guardar el tiempo de inicio
         self.candidatos, self.votosDepartamento = heapsort(combo.get())
+        end_time = time.perf_counter()  # Guardar el tiempo de finalización
+        tiempo_transcurrido = end_time - start_time  # Calcular la diferencia de tiempo
+        print("Tiempo transcurrido visualizar:", tiempo_transcurrido)
         ax.bar(self.candidatos, self.votosDepartamento)
 
         # Crear lienzo para el gráfico de Matplotlib

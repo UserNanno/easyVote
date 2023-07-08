@@ -30,7 +30,7 @@ departamentos_peru = ['Amazonas', 'Ancash', 'Apurímac', 'Arequipa', 'Ayacucho',
                       'Tacna', 'Tumbes', 'Ucayali']
 
 # Generar 1000 datos aleatorios e insertarlos en la base de datos
-for _ in range(1000):
+for _ in range(891031):
     # Generar valores aleatorios
     dni = ''.join(random.choices(string.digits, k=8))
     nombre = ''.join(random.choices(string.ascii_uppercase, k=10))
